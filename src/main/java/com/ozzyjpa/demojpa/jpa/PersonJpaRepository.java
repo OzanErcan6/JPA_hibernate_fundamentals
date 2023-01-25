@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -19,16 +20,21 @@ public class PersonJpaRepository {
         return entityManager.find(Person.class, id);
     }
 
-    /*public List<Person> findAll() {
-        return entityManager.find
+    public List<Person> findAll() {
+        TypedQuery<Person> namedQuery = entityManager.createNamedQuery("find_all_persons", Person.class);
+        return namedQuery.getResultList();
     }
 
-    public int deleteById(int personId) {
+    public void deleteById(int id) {
+        Person person = findById(id);
+        entityManager.remove(person);
     }
 
-    public int updatePerson(Person person) {
+    public Person updatePerson(Person person) {
+        return entityManager.merge(person);
     }
 
-    public int createPerson(Person person) {
-    }*/
+    public Person insertPerson(Person person) {
+        return entityManager.merge(person);
+    }
 }

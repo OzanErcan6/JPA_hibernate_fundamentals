@@ -1,12 +1,10 @@
 package com.ozzyjpa.demojpa.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@NamedQuery(name = "find_all_persons", query = "select p from Person p")
 public class Person {
     @Id
     @GeneratedValue

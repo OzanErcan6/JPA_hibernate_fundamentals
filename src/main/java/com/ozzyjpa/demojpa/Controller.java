@@ -16,29 +16,28 @@ public class Controller {
     //PersonJdbcDao dao;
     PersonJpaRepository dao;
 
-    /*@GetMapping
-    public List<Person> getAllPersons() {
+    @GetMapping
+    public List<Person> findAllPersons() {
         return dao.findAll();
-    }*/
-
+    }
 
     @GetMapping("/{personId}")
     public Person getPersonById(@PathVariable int personId){
         return dao.findById(personId);
     }
 
-    /*@DeleteMapping("/{personId}")
-    public int deletePersonByPersonId(@PathVariable int personId){
-         return dao.deleteById(personId);
+    @DeleteMapping("/{personId}")
+    public void deletePersonByPersonId(@PathVariable int personId){
+         dao.deleteById(personId);
     }
 
     @PutMapping
-    public int updatePersonByPersonId(@RequestBody Person person){
+    public Person updatePersonByPersonId(@RequestBody Person person){
         return dao.updatePerson(person);
     }
 
     @PostMapping
-    public int createPost(@RequestBody Person person){
-        return dao.createPerson(person);
-    }*/
+    public Person createPost(@RequestBody Person person){
+        return dao.insertPerson(person);
+    }
 }
