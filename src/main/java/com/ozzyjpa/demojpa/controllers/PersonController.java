@@ -1,7 +1,6 @@
-package com.ozzyjpa.demojpa;
+package com.ozzyjpa.demojpa.controllers;
 
 import com.ozzyjpa.demojpa.entity.Person;
-import com.ozzyjpa.demojpa.jdbc.PersonJdbcDao;
 import com.ozzyjpa.demojpa.jpa.PersonJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/person")
-public class Controller {
+public class PersonController {
 
     @Autowired
     //PersonJdbcDao dao;
