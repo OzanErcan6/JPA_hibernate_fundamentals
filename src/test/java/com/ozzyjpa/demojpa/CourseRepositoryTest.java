@@ -21,16 +21,16 @@ public class CourseRepositoryTest {
 
     @Test
     void findById_basic() {
-        Course course = courseRepository.findById(1);
-        assertEquals("1.ders",course.getName());
+        Course course = courseRepository.findById(3);
+        assertEquals("3.derss",course.getName());
     }
 
     @Test
     @DirtiesContext
         // after test run spring reverts db changes
     void deleteById_basic() {
-        courseRepository.deleteById(1);
-        assertNull(courseRepository.findById(1));
+        courseRepository.deleteById(15);
+        assertNull(courseRepository.findById(15));
     }
 
     @Test
@@ -38,16 +38,22 @@ public class CourseRepositoryTest {
     void insert_basic() {
         Course course = new Course("yeni.ders");
         courseRepository.save(course);
-        assertEquals("yeni.ders", courseRepository.findById(13).getName());
+        assertEquals("yeni.ders", courseRepository.findById(16).getName());
     }
 
     @Test
     @DirtiesContext // after test run spring reverts db changes
     void update_basic() {
-        Course course = courseRepository.findById(3);
-        assertEquals("3.ders",course.getName());
+        Course course = courseRepository.findById(13);
+        assertEquals("gamzee2e3",course.getName());
         course.setName("3.derss");
         courseRepository.save(course);
         assertEquals("3.derss", courseRepository.findById(3).getName());
+    }
+
+    @Test
+    @DirtiesContext // after test run spring reverts db changes
+    void playEM_test() {
+        courseRepository.playEM();
     }
 }
