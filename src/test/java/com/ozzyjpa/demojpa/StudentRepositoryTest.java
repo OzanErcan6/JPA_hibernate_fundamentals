@@ -29,8 +29,7 @@ public class StudentRepositoryTest {
     EntityManager entityManager;
 
     @Test
-    @DirtiesContext // after test run spring reverts db changes
-    //@Transactional
+    @Transactional
     void retrieveStudentAndPassportDetails() {
         Student student = entityManager.find(Student.class, 10001L);
         logger.info("studentt {}", student);
@@ -46,5 +45,13 @@ public class StudentRepositoryTest {
     @DirtiesContext // after test run spring reverts db changes
     void playEM_test() {
         studentRepository.saveStudentWithPassport();
+    }
+
+    @Test
+    @Transactional
+    void retrievePassportAndAssociatedStudent() {
+        Passport passport = entityManager.find(Passport.class, 20001L);
+        logger.info("passportt {}", passport);
+        logger.info("passport_idd {}", passport.getStudent());
     }
 }

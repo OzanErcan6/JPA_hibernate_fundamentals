@@ -1,8 +1,6 @@
 package com.ozzyjpa.demojpa.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Passport {
@@ -19,6 +17,10 @@ public class Passport {
 
     protected Passport() {}
 
+    // student is the owner, put mappedBy to the non owner
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "passport")
+    private Student student;
+
     public Long getId() {
         return id;
     }
@@ -33,6 +35,14 @@ public class Passport {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     @Override
