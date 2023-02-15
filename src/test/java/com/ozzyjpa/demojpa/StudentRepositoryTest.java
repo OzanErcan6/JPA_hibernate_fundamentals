@@ -30,6 +30,7 @@ public class StudentRepositoryTest {
 
     @Test
     @Transactional
+
     void retrieveStudentAndPassportDetails() {
         Student student = entityManager.find(Student.class, 10001L);
         logger.info("studentt {}", student);
