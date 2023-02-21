@@ -3,6 +3,7 @@ package com.ozzyjpa.demojpa.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Review {
@@ -14,6 +15,9 @@ public class Review {
     private String description;
 
     private String rating;
+
+    @ManyToOne
+    private Course course;
 
     public Review(String description, String rating) {
         this.description = description;
@@ -44,6 +48,14 @@ public class Review {
 
     public void setRating(String rating) {
         this.rating = rating;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     @Override

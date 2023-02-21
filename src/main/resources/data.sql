@@ -26,7 +26,11 @@ insert into passport (id, number) values(20003, '12347');
 insert into passport (id, number) values(20004, '12348');
 
 
-insert into review (id, rating, description) values(30001, '5', 'great course');
-insert into review (id, rating, description) values(30002, '4', 'great course2');
-insert into review (id, rating, description) values(30003, '2', 'great course3');
-insert into review (id, rating, description) values(30004, '9', 'great course4');
+insert into review (id, rating, description, course_id) values(30001, '5', 'great course', 10);
+insert into review (id, rating, description, course_id) values(30002, '4', 'great course2', 10);
+insert into review (id, rating, description, course_id) values(30003, '2', 'great course3', 12);
+insert into review (id, rating, description, course_id) values(30004, '9', 'great course4', 13);
+
+
+
+select * from review, course where course.id = review.course_id

@@ -1,6 +1,7 @@
 package com.ozzyjpa.demojpa;
 
 import com.ozzyjpa.demojpa.entity.Course;
+import com.ozzyjpa.demojpa.entity.Review;
 import com.ozzyjpa.demojpa.jpa.CourseRepository;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -8,6 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -55,5 +59,21 @@ public class CourseRepositoryTest {
     @DirtiesContext // after test run spring reverts db changes
     void playEM_test() {
         courseRepository.playEM();
+    }
+
+    @Test
+    @DirtiesContext // after test run spring reverts db changes
+    void addHardCodedReviewsForCourse_test() {
+        courseRepository.addHardCodedReviewsForCourse();
+    }
+
+    @Test
+    @DirtiesContext // after test run spring reverts db changes
+    void addReviewsForCourse_test() {
+        List<Review> reviews = new ArrayList<>();
+        reviews.add(new Review("greato", "5"));
+        reviews.add(new Review("greatoo", "5"));
+        reviews.add(new Review("greatooo", "5"));
+        courseRepository.addReviewsForCourse(13L, reviews);
     }
 }
