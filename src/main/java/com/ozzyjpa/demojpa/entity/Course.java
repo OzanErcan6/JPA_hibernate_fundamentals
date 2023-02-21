@@ -19,27 +19,19 @@ public class Course {
     @Id
     @GeneratedValue
     private Long id;
-
     //@Column(name="fullname", nullable = false)
     @Column(nullable = false)
     private String name;
-
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course")  // default is lazy fetching, use @Transactional or eager fetching (fetch = FetchType.EAGER)
     private List<Review> reviews = new ArrayList<>();
-
     @UpdateTimestamp
     private LocalDateTime lastUpdated;
-
     @CreationTimestamp
     private LocalDateTime createdDate;
-
     public Course(String name) {
         this.name = name;
     }
-
     protected Course() {}
-
-
 
 
     public Long getId() {

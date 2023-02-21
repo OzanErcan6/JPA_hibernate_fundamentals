@@ -9,7 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +24,9 @@ public class CourseRepositoryTest {
 
     @Autowired
     CourseRepository courseRepository;
+
+    @Autowired
+    EntityManager entityManager;
 
     @Test
     void findById_basic() {
@@ -75,5 +80,18 @@ public class CourseRepositoryTest {
         reviews.add(new Review("greatoo", "5"));
         reviews.add(new Review("greatooo", "5"));
         courseRepository.addReviewsForCourse(13L, reviews);
+    }
+
+    @Test
+    void retrieveReviewsForCourse() {
+        Course course = courseRepository.findById(10L);
+        logger.info("all reviews {}", course.getReviews());
+    }
+
+    @Test
+    @Transactional
+    void retrieveCourseForReview() {
+        Review review = entityManager.find(Review.class, 30001L);
+        logger.info("course {}", review.getCourse());
     }
 }

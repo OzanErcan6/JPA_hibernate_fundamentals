@@ -11,12 +11,9 @@ public class Review {
     @Id
     @GeneratedValue
     private Long id;
-
     private String description;
-
     private String rating;
-
-    @ManyToOne
+    @ManyToOne // default is eager fetching
     private Course course;
 
     public Review(String description, String rating) {
