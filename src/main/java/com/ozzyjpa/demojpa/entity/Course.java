@@ -22,8 +22,11 @@ public class Course {
     //@Column(name="fullname", nullable = false)
     @Column(nullable = false)
     private String name;
+    // Review is the owner, put mappedBy to the non owner
     @OneToMany(mappedBy = "course")  // default is lazy fetching, use @Transactional or eager fetching (fetch = FetchType.EAGER)
     private List<Review> reviews = new ArrayList<>();
+    @ManyToMany(mappedBy = "courses") // courses variable in the Student entity could have the (mappedBy = "students") does not matter
+    private List<Student> students = new ArrayList<>();
     @UpdateTimestamp
     private LocalDateTime lastUpdated;
     @CreationTimestamp
@@ -78,6 +81,14 @@ public class Course {
 
     public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void addStudent(Student student) {
+        this.students.add(student);
     }
 
     @Override

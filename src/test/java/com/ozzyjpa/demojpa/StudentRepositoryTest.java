@@ -1,6 +1,7 @@
 package com.ozzyjpa.demojpa;
 
 
+import com.ozzyjpa.demojpa.entity.Course;
 import com.ozzyjpa.demojpa.entity.Passport;
 import com.ozzyjpa.demojpa.entity.Student;
 import com.ozzyjpa.demojpa.jpa.StudentRepository;
@@ -54,4 +55,31 @@ public class StudentRepositoryTest {
         logger.info("passportt {}", passport);
         logger.info("passport_idd {}", passport.getStudent());
     }
+
+    @Test
+    @Transactional
+    void retrieveStudentAndCourse() {
+        Student student = entityManager.find(Student.class, 10001L);
+        logger.info("studentt {}", student);
+        logger.info("coursess {}", student.getCourses());
+    }
+
+    @Test
+    @Transactional
+    void retrieveStudentAndCourse2() {
+        Course course = entityManager.find(Course.class, 10L);
+        logger.info("coursee {}", course);
+        logger.info("studentts {}", course.getStudents());
+    }
+
+    @Test
+    void insertStudentAndCourse() {
+        Student student = new Student("Jack");
+        Course course = new Course("microservices");
+        studentRepository.insertStudentAndCourse(student, course);
+
+        //logger.info("coursee {}", course);
+        //logger.info("studentts {}", course.getStudents());
+    }
+
 }

@@ -31,6 +31,15 @@ insert into review (id, rating, description, course_id) values(30002, '4', 'grea
 insert into review (id, rating, description, course_id) values(30003, '2', 'great course3', 12);
 insert into review (id, rating, description, course_id) values(30004, '9', 'great course4', 13);
 
+select * from review, course where course.id = review.course_id;
 
+insert into student_course (student_id, course_id) values(10001, 10);
+insert into student_course (student_id, course_id) values(10001, 12);
+insert into student_course (student_id, course_id) values(10001, 13);
+insert into student_course (student_id, course_id) values(10001, 14);
+insert into student_course (student_id, course_id) values(10002, 10);
+insert into student_course (student_id, course_id) values(10002, 12);
+insert into student_course (student_id, course_id) values(10002, 13);
+insert into student_course (student_id, course_id) values(10003, 14);
+insert into student_course (student_id, course_id) values(10003, 16);
 
-select * from review, course where course.id = review.course_id

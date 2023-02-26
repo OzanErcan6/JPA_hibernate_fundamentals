@@ -1,5 +1,6 @@
 package com.ozzyjpa.demojpa.jpa;
 
+import com.ozzyjpa.demojpa.entity.Course;
 import com.ozzyjpa.demojpa.entity.Passport;
 import com.ozzyjpa.demojpa.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +44,16 @@ public class StudentRepository {
         student1.setPassport(passport1);
 
         entityManager.persist(student1);
-
     }
+
+    public void insertStudentAndCourse(Student student, Course course){
+        student.addCourse(course);
+        course.addStudent(student);
+
+        entityManager.persist(student);
+        entityManager.persist(course);
+    }
+
 
 
     public void some_operations_for_persistence_context() {
