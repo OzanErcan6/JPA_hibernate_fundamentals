@@ -96,7 +96,6 @@ public class Course {
         return "Course{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", reviews=" + reviews +
                 ", lastUpdated=" + lastUpdated +
                 ", createdDate=" + createdDate +
                 '}';
