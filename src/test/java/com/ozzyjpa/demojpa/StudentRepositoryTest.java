@@ -1,6 +1,7 @@
 package com.ozzyjpa.demojpa;
 
 
+import com.ozzyjpa.demojpa.entity.Address;
 import com.ozzyjpa.demojpa.entity.Course;
 import com.ozzyjpa.demojpa.entity.Passport;
 import com.ozzyjpa.demojpa.entity.Student;
@@ -60,6 +61,17 @@ public class StudentRepositoryTest {
     @Transactional
     void retrieveStudentAndCourse() {
         Student student = entityManager.find(Student.class, 10001L);
+        student.setAddress(new Address("a101", "b101", "istanbul"));
+        entityManager.flush();
+        logger.info("studentt {}", student);
+        logger.info("coursess {}", student.getAddress().toString());
+    }
+
+    @Test
+    @Transactional
+    void setAddressDetails() {
+        Student student = entityManager.find(Student.class, 10001L);
+
         logger.info("studentt {}", student);
         logger.info("coursess {}", student.getCourses());
     }

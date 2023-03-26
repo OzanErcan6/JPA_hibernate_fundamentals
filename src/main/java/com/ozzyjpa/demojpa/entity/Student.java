@@ -24,6 +24,17 @@ public class Student {
     inverseJoinColumns = @JoinColumn(name="COURSE_ID"))
     private List<Course> courses = new ArrayList<>();
 
+    @Embedded
+    private Address address;
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     public Student(String name) {
         this.name = name;
     }
