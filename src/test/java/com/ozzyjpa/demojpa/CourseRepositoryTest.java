@@ -94,4 +94,19 @@ public class CourseRepositoryTest {
         Review review = entityManager.find(Review.class, 30001L);
         logger.info("course {}", review.getCourse());
     }
+
+    @Test
+    @Transactional
+    // if we put transactional on the test
+    // after querying the same course the result will be read from cache
+    // and it will not query the same thing
+    // to efficiently use first level cache
+    // transaction should be in the service layer
+    void findByIdFirstLevelCacheDemo() {
+        Course course = courseRepository.findById(10L);
+        logger.info("first course retrieved {}", course);
+
+        Course course1 = courseRepository.findById(10L);
+        logger.info("first course retrieved again {}", course1);
+    }
 }
