@@ -15,6 +15,7 @@ import java.util.List;
 //@Table(name="CourseDetails") // use to rename table name
 @NamedQueries(value = {
         @NamedQuery(name="query_get_all_courses", query = "Select c from Course c"),
+        @NamedQuery(name="query_get_all_courses_join_fetch", query = "Select c from Course c JOIN FETCH c.students"),
         @NamedQuery(name="query_get_ders", query = "Select c from Course c where c.name like '%ders%'")
 })
 @SQLDelete(sql = "update course set is_deleted = true where id = ?")
