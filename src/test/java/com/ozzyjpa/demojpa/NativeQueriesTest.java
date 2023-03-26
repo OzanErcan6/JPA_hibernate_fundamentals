@@ -23,7 +23,7 @@ public class NativeQueriesTest {
 
     @Test
     void native_query_basic() {
-        List resultList = entityManager.createNativeQuery("SELECT * FROM COURSE", Course.class).getResultList();
+        List resultList = entityManager.createNativeQuery("SELECT * FROM COURSE where is_deleted = false", Course.class).getResultList();
         logger.info("result list {}", resultList.get(0).toString());
     }
 

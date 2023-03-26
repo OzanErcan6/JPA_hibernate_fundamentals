@@ -38,8 +38,9 @@ public class CourseRepositoryTest {
     @DirtiesContext
         // after test run spring reverts db changes
     void deleteById_basic() {
-        courseRepository.deleteById(15);
-        assertNull(courseRepository.findById(15));
+        courseRepository.deleteById(19);
+        assertNull(courseRepository.findById(19));
+        //assertTrue(courseRepository.findById(18).isDeleted());
     }
 
     @Test

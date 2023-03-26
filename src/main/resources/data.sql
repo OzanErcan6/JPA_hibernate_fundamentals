@@ -24,6 +24,9 @@ insert into course (id, created_date, last_updated, name) values(15, CURRENT_TIM
 insert into course (id, created_date, last_updated, name) values(16, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3), 'course7');
 insert into course (id, created_date, last_updated, name) values(17, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3), 'course8');
 
+update course set is_deleted = false;
+
+
 insert into review (id, rating, description, course_id) values(30001, '5', 'great course', 10);
 insert into review (id, rating, description, course_id) values(30002, '4', 'great course2', 10);
 insert into review (id, rating, description, course_id) values(30003, '2', 'great course3', 12);

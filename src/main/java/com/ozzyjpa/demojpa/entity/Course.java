@@ -2,7 +2,9 @@ package com.ozzyjpa.demojpa.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,6 +17,8 @@ import java.util.List;
         @NamedQuery(name="query_get_all_courses", query = "Select c from Course c"),
         @NamedQuery(name="query_get_ders", query = "Select c from Course c where c.name like '%ders%'")
 })
+@SQLDelete(sql = "update course set is_deleted = true where id = ?")
+@Where(clause = "is_deleted = false") // do not work with native queries
 public class Course {
 
     @Id
@@ -33,11 +37,26 @@ public class Course {
     private LocalDateTime lastUpdated;
     @CreationTimestamp
     private LocalDateTime createdDate;
+    @Column
+    private boolean isDeleted;
     public Course(String name) {
         this.name = name;
     }
     protected Course() {}
 
+    // to update the cache data
+    @PreRemove
+    public void preRemove(){
+        this.isDeleted =true;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
+    }
 
     public Long getId() {
         return id;
