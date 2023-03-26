@@ -1,5 +1,6 @@
 package com.ozzyjpa.demojpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -26,6 +27,7 @@ public class Course {
     @OneToMany(mappedBy = "course")  // default is lazy fetching, use @Transactional or eager fetching (fetch = FetchType.EAGER)
     private List<Review> reviews = new ArrayList<>();
     @ManyToMany(mappedBy = "courses") // courses variable in the Student entity could have the (mappedBy = "students") does not matter
+    @JsonIgnore
     private List<Student> students = new ArrayList<>();
     @UpdateTimestamp
     private LocalDateTime lastUpdated;
