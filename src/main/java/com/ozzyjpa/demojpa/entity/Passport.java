@@ -17,7 +17,7 @@ public class Passport {
 
     protected Passport() {}
 
-    // student is the owner, put mappedBy to the non owner
+    // student is the owner, put mappedBy to the non owner, Student has the foreign key field in db
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "passport")
     private Student student;
 

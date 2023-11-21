@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.Optional;
 
 @Repository
 @Transactional // so that db operations are not left unfinished
@@ -16,6 +17,10 @@ public class StudentRepository {
     //entity manager is an interface to comminicate with persistense context
     @Autowired
     EntityManager entityManager;
+
+    @Autowired
+    StudentJpaRepository studentJpaRepository;
+
 
     public Student findById(long id){
         return entityManager.find(Student.class, id);
@@ -46,12 +51,35 @@ public class StudentRepository {
         entityManager.persist(student1);
     }
 
+
+    // çalışmıyor
     public void insertStudentAndCourse(Student student, Course course){
-        student.addCourse(course);
-        course.addStudent(student);
+
+        Student student1 = studentJpaRepository.findByName(student.getName());
+        if(student1 == null){
+            student.addCourse(course);
+            course.addStudent(student);
+
+            entityManager.persist(student);
+            entityManager.persist(course);
+        }
+        else {
+            student1.addCourse(course);
+            course.addStudent(student1);
+
+            entityManager.persist(student1);
+            entityManager.persist(course);
+        }
+
+
+    }
+
+
+    public void insertStudentAndPassport(Student student, Passport passport){
+        entityManager.persist(passport);
+        student.setPassport(passport);
 
         entityManager.persist(student);
-        entityManager.persist(course);
     }
 
 

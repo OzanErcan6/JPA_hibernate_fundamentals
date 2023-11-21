@@ -39,6 +39,22 @@ public class StudentRepositoryTest {
     }
 
     @Test
+    @Transactional
+    void retrieveStudentAndPassportDetails2() {
+        Passport passport = entityManager.find(Passport.class, 20001L);
+        logger.info("passportt {}", passport);
+        logger.info("studentt {}", passport.getStudent());
+    }
+
+    @Test
+    @Transactional
+    void retrieveStudentAndPassportDetails3() {
+        Student student = studentRepository.findById(10001);
+        logger.info("studentt {}", student);
+        logger.info("passport_idd {}", student.getPassport());
+    }
+
+    @Test
     void some_test() {
         studentRepository.some_operations_for_persistence_context();
     }
@@ -85,13 +101,15 @@ public class StudentRepositoryTest {
     }
 
     @Test
+    @DirtiesContext
     void insertStudentAndCourse() {
-        Student student = new Student("Jack");
-        Course course = new Course("microservices");
+        Student student = new Student("Gamze Ercan2");
+        Passport passport = new Passport("G12345");
+        studentRepository.insertStudentAndPassport(student,passport);
+        Course course = new Course("React Native in 100 steps2");
+        Course course2 = new Course("React in 100 steps2");
         studentRepository.insertStudentAndCourse(student, course);
-
-        //logger.info("coursee {}", course);
-        //logger.info("studentts {}", course.getStudents());
+        studentRepository.insertStudentAndCourse(student, course2);
     }
 
 }
