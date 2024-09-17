@@ -15,7 +15,7 @@ public class Student {
     @Column(nullable = false)
     private String name;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne//(fetch = FetchType.LAZY)
     private Passport passport;
 
     @ManyToMany//(fetch = FetchType.EAGER)

@@ -46,9 +46,9 @@ public class CourseRepositoryTest {
     @Test
     @DirtiesContext // after test run spring reverts db changes
     void insert_basic() {
-        Course course = new Course("yeni.ders");
+        Course course = new Course("en yeni dersim");
         courseRepository.save(course);
-        assertEquals("yeni.ders", courseRepository.findById(16).getName());
+        assertEquals("en yeni dersim", courseRepository.findById(course.getId()).getName());
     }
 
     @Test

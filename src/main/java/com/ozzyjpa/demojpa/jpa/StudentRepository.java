@@ -51,6 +51,15 @@ public class StudentRepository {
         entityManager.persist(student1);
     }
 
+    public Student saveStudentWithPassport(Student student, Passport passport){
+        entityManager.persist(passport);
+        student.setPassport(passport);
+
+        entityManager.persist(student);
+
+        return student;
+    }
+
 
     // çalışmıyor
     public void insertStudentAndCourse(Student student, Course course){

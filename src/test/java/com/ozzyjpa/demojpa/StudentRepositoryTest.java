@@ -66,6 +66,21 @@ public class StudentRepositoryTest {
     }
 
     @Test
+    void saveStudentAndPassword() {
+        Passport passport = new Passport("N123456");
+        Student student = new Student("ozzy");
+        studentRepository.saveStudentWithPassport(student,passport);
+    }
+
+    @Test
+    void findByStudent() {
+
+        Student student1 = studentRepository.findById(80);
+        System.out.println(student1.toString());
+    }
+
+
+    @Test
     @Transactional
     void retrievePassportAndAssociatedStudent() {
         Passport passport = entityManager.find(Passport.class, 20001L);
